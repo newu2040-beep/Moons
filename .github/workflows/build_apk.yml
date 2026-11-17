@@ -5,6 +5,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build Release APK
@@ -39,3 +42,10 @@ jobs:
           name: Moons-Release-APK
           path: build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
+
+      - name: Publish to GitHub Releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp build/app/outputs/flutter-apk/app-release.apk moons-v1.0.apk
+          gh release create v1.0.0 moons-v1.0.apk --title "Moons v1.0.0 Release" --notes "Direct APK download for Moons Android app" --clobber || true

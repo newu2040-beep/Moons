@@ -45,7 +45,7 @@ class MoonsTheme {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
-          side: BorderSide(color: Colors.slate.shade100.withAlpha(200)),
+          side: const BorderSide(color: Color(0xFFE2E8F0)),
         ),
       ),
       appBarTheme: const AppBarTheme(
